@@ -1,4 +1,4 @@
-# Compose Example
+# Sumo Compose Example
 
 From https://www.sumologic.com/blog/devops/how-to-build-applications-docker-compose/
 
