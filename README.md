@@ -17,3 +17,33 @@ Only differences
 * Did not use `localhost` to reference between containers, used the `service name`
 * Added a Consul just like in irmin
   * No need for `container_name` in the docker_compose
+
+## To Use
+
+### To run
+```
+cd compose
+docker-compose up -d --build
+```
+
+### To try out
+
+* Browse to http://localhost and see something like
+
+```
+Hello World!
+mykey value: myvalue
+```
+
+* In another browser window go to http://localhost:8500/ui/#/dc1/kv/mykey/edit
+  (The Key/Value page of the Consul UI)
+  * You will see the key `mykey` with the value of `myvalue`
+* You can update the value to something else here
+  * Refresh http://localhost and you will see the updated value
+  
+
+### To shut down
+
+```
+docker-compose down
+```
