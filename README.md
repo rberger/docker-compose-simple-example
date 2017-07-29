@@ -1,29 +1,19 @@
-# Sumo Compose Example
+# Docker Compose Example with Consul
 
-From https://www.sumologic.com/blog/devops/how-to-build-applications-docker-compose/
+Started from https://www.sumologic.com/blog/devops/how-to-build-applications-docker-compose/
 
-Only difference is I used the more modern Docker for Mac that DOES NOT USE
-docker-machine. It uses the builtin Hyperkit of Docker for MacOS
-
-So to access the docker services I was able to browse on my Mac browser to
-http://localhost or for the earlier part without nginx I was able to browse to
-http://localhost:5000 Actually to http://localhost:5010 as I changed the ports
-to use host port 5010 since I have something running on 5000 on my Mac.
-
-The initial config I had for accessing the python app without nginx was:
-
-```
-version: '2'
-services:
-  helloworld:
-    image: helloworld:1.0
-    ports:
-    - "5010:5000"
-    volumes:
-    - ../helloworld:/code
-```
-
-Also there is no longer a need to have the `link:` as docker-compose will
-automatically create a default network and make the service names usable without
-the `link:`
-
+Only differences
+* Used the more modern Docker for Mac
+  * It uses the builtin Hyperkit of Docker for MacOS
+  *  __DID NOT USE docker-machine__
+  * No longer a need to have the `link:` as docker-compose will automatically
+    create a default network and make the service names usable without the
+    `link:`
+* Was able to access the docker containers that expose ports using `localhost` on my Mac
+  * Was able to browse to http://localhost for accessing the NGINX
+  * Was able to browse to http://localhost:8500 to access the Consul UI
+    * Could see the key/value set by the python application
+    * Could update the value in the Consul UI and see the result in the NGINX/Python app on refreshing http://localhost
+* Did not use `localhost` to reference between containers, used the `service name`
+* Added a Consul just like in irmin
+  * No need for `container_name` in the docker_compose
