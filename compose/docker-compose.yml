@@ -14,3 +14,7 @@ services:
     - "80:80"
     volumes:
     - ./nginx/conf.d:/etc/nginx/conf.d
+  consul:
+    image: consul
+    ports:
+    - 8500:8500
